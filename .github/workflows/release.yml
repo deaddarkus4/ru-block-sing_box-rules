@@ -44,6 +44,11 @@ jobs:
           pip3 install requests 
           python3 main.py
 
+      - name: compile json to srs
+        run: |
+           sing-box rule-set compile geosite-ru-block.json
+           sing-box rule-set compile geoip-ru-block.json
+
       - name: Set ENV variables
         run: |
           echo "RELEASE_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV

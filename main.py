@@ -18,11 +18,11 @@ sign_json = {
 with open('geosite-ru-block.json', 'w', encoding='utf-8') as file:
     file.write(json.dumps(sign_json, indent=2))
 
-result = subprocess.run('sing-box rule-set compile geosite-ru-block.json')
-if result.returncode == 0:
-    print('geosite-ru-block.srs saved successful')
-else:
-    print(result.stderr)
+#result = subprocess.run('sing-box rule-set compile geosite-ru-block.json')
+#if result.returncode == 0:
+#    print('geosite-ru-block.srs saved successful')
+#else:
+#    print(result.stderr)
 #######################################################################
 txt = requests.get('https://antifilter.download/list/allyouneed.lst')
 
@@ -40,8 +40,8 @@ sign_json = {
 with open('geoip-ru-block.json', 'w', encoding='utf-8') as file:
     file.write(json.dumps(sign_json, indent=2))
 
-subprocess.run('sing-box rule-set compile geoip-ru-block.json')
-if result.returncode == 0:
-    print('geoip-ru-block.srs saved successful')
-else:
-    print(result.stderr)
+#subprocess.run('sing-box rule-set compile geoip-ru-block.json')
+#if result.returncode == 0:
+#    print('geoip-ru-block.srs saved successful')
+#else:
+#    print(result.stderr)
