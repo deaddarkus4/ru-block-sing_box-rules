@@ -32,6 +32,7 @@ jobs:
 
       - name: setup sing_box
         run: |
+          sudo apt update
           sudo apt install -y sing-box
 
       - name: launch python
