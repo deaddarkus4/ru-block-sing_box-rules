@@ -72,17 +72,17 @@ jobs:
           echo "* Кол-во заблокированных доменов - ${{ env.NUM_DOMAIN }}" >> RELEASE_NOTES
           echo "* Кол-во заблокированных IP адресов - ${{ env.NUM_IP }}" >> RELEASE_NOTES
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: RELEASE_NOTES
-          draft: false
-          prerelease: false
+      # - name: Create Release
+      #   id: create_release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      #   with:
+      #     tag_name: ${{ github.ref }}
+      #     release_name: Release ${{ github.ref }}
+      #     body: RELEASE_NOTES
+      #     draft: false
+      #     prerelease: false
 
       # - name: Push assets to release branch
       #   run: |
