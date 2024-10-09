@@ -3,9 +3,11 @@
 
 
 ## V2RayN
-<p>Запустите `setup-geo.bat PATH_TO_V2RayN`</p>
-<p>или</p>
-<p>Скопируйте *.srs файлы в директорию *PATH_TO_V2Ray/bin/srss*.</p>
+Запустите `setup-geo.bat PATH_TO_V2RayN`
+
+или
+
+Скопируйте *.srs файлы в директорию `PATH_TO_V2Ray/bin/srss`.
 
 ### Применение в правилах V2RayN
 
