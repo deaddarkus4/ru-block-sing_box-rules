@@ -62,11 +62,11 @@ jobs:
 
       - name: read number of blocked ips
         run: |
-          echo "NUM_IP=$(wc -l < curl -sSL https://antifilter.download/list/ip.lst)" >> $GITHUB_ENV
+          echo "NUM_IP=$(wc -l <(curl -sSL https://antifilter.download/list/ip.lst))" >> $GITHUB_ENV
 
       - name: read number of blocked domains
         run: |
-          echo "NUM_DOMAIN=$(wc -l < curl -sSL https://antifilter.download/list/domains.lst)" >> $GITHUB_ENV
+          echo "NUM_DOMAIN=$(wc -l <(curl -sSL https://antifilter.download/list/domains.lst))" >> $GITHUB_ENV
 
       - name: Generate Release Notes
         run: | 
