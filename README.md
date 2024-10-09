@@ -12,7 +12,7 @@ Domain:
 geosite:ru-block
 ```
 
-Ip:
+IP:
 ```
 geoip:ru-block
 ```
