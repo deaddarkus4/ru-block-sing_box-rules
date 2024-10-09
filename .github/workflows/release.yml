@@ -84,18 +84,18 @@ jobs:
       #     draft: false
       #     prerelease: false
 
-      # - name: Push assets to release branch
-      #   run: |
-      #     echo "https://${{ github.actor }}:${{ github.secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-      #     cd release || exit 1
-      #     git init
-      #     git config --local user.name "github-actions[bot]"
-      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      #     git checkout -b release
-      #     git add .
-      #     git commit -m "${{ env.RELEASE_NAME }}"
-      #     git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-      #     git push -f origin release
+      - name: Push assets to release branch
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}"
+          cd release || exit 1
+          git init
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b release
+          git add .
+          git commit -m "${{ env.RELEASE_NAME }}"
+          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          git push -f origin release
 
       - name: Release and upload assets
         uses: softprops/action-gh-release@v1
