@@ -72,18 +72,30 @@ jobs:
           echo "* Кол-во заблокированных доменов - ${{ env.NUM_DOMAIN }}" >> RELEASE_NOTES
           echo "* Кол-во заблокированных IP адресов - ${{ env.NUM_IP }}" >> RELEASE_NOTES
 
-      - name: Push assets to release branch
-        run: |
-          echo "https://${{ github.actor }}:${{ github.secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-          cd release || exit 1
-          git init
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b release
-          git add .
-          git commit -m "${{ env.RELEASE_NAME }}"
-          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-          git push -f origin release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: RELEASE_NOTES
+          draft: false
+          prerelease: false
+
+      # - name: Push assets to release branch
+      #   run: |
+      #     echo "https://${{ github.actor }}:${{ github.secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+      #     cd release || exit 1
+      #     git init
+      #     git config --local user.name "github-actions[bot]"
+      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git checkout -b release
+      #     git add .
+      #     git commit -m "${{ env.RELEASE_NAME }}"
+      #     git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+      #     git push -f origin release
 
       - name: Release and upload assets
         uses: softprops/action-gh-release@v1
