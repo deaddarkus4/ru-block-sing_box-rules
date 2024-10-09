@@ -74,7 +74,7 @@ jobs:
 
       - name: Push assets to release branch
         run: |
-          echo "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          echo "https://${{ github.actor }}:${{ github.secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           cd release || exit 1
           git init
           git config --local user.name "github-actions[bot]"
