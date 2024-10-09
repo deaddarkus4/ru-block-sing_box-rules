@@ -60,13 +60,15 @@ jobs:
           echo "TAG_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
           echo "RELEASE_DATE=$(date +'%F %T %Z')" >> $GITHUB_ENV
 
-      - name: read number of blocked ips
+      - name: Get list of blocked IPs
         run: |
-          echo "NUM_IP=$(wc -l <(curl -sSL https://antifilter.download/list/ip.lst))" >> $GITHUB_ENV
+          curl -sSL https://antifilter.download/list/ip.lst -o ip-block-list.txt
+          echo "NUM_IP=$(wc -l < ip-block-list.txt)" >> $GITHUB_ENV
 
-      - name: read number of blocked domains
+      - name: Get a list of blocked domains
         run: |
-          echo "NUM_DOMAIN=$(wc -l <(curl -sSL https://antifilter.download/list/domains.lst))" >> $GITHUB_ENV
+          curl -sSL https://antifilter.download/list/domains.lst -o ru-block.txt
+          echo "NUM_DOMAIN=$(wc -l < ru-block.txt)" >> $GITHUB_ENV
 
       - name: Generate Release Notes
         run: | 
