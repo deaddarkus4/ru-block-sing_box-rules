@@ -48,6 +48,9 @@ jobs:
         run: |
            sing-box rule-set compile geosite-ru-block.json
            sing-box rule-set compile geoip-ru-block.json
+           mkdir release
+           cp geosite-ru-block.srs release/
+           cp geoip-ru-block.srs release/
 
       - name: Set ENV variables
         run: |
@@ -71,12 +74,14 @@ jobs:
 
       - name: Push assets to release branch
         run: |
+          cd release || exit 1
           git init
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b release
           git add .
           git commit -m "${{ env.RELEASE_NAME }}"
+          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f origin release
 
       - name: Release and upload assets
@@ -88,8 +93,8 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            geoip-ru-block.srs
-            geosite-ru-block.srs
+            release/geoip-ru-block.srs
+            release/geosite-ru-block.srs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
